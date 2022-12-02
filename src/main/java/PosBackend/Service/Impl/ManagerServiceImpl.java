@@ -24,7 +24,7 @@ public class ManagerServiceImpl implements ManagerService {
     public Manager createManager(ManagerCreateDto managerCreateDto) {
         Optional<Entrepot> entrepot=entrepotRepository.findById(managerCreateDto.getIdEntrepot());
         if(entrepot.isEmpty()){
-            throw new UserException("sorry cant create Vendeur");
+            throw new UserException("sorry cant create Manager");
         }
         Manager manager=managerMapper.toBo(managerCreateDto);
         manager.setEntrepot(entrepot.get());

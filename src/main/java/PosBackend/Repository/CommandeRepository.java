@@ -1,11 +1,10 @@
 package PosBackend.Repository;
 
-import PosBackend.Domain.Manager;
+import PosBackend.Domain.Commande;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-
-public interface ManagerRepository extends JpaRepository<Manager,String> {
+public interface CommandeRepository extends JpaRepository<Commande,String> {
 
 }

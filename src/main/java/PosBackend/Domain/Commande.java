@@ -19,6 +19,6 @@ import java.util.List;
 public class Commande extends AbstractEntite{
     @Embedded
     Client client;
-    @ManyToMany(mappedBy ="commandes" ,fetch = FetchType.LAZY)
+    @ManyToMany
     List<Produit> produits;
 }

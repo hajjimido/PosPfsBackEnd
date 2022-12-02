@@ -15,8 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @FieldDefaults(level = AccessLevel.PROTECTED)
-
+@JsonIgnoreProperties(value = {"produits"},allowSetters = true)
 public class Categorie extends AbstractEntite{
+    @Column(unique = true)
     String nameCategorie;
     @ManyToMany(mappedBy = "categories")
     List<Entrepot> entrepots;

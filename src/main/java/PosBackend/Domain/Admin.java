@@ -17,4 +17,8 @@ import javax.persistence.OneToOne;
 public class Admin extends User{
     @OneToOne(mappedBy = "admin")
     Entreprise entreprise;
+
+    public Admin(String firstname, String lastname, String  email, String phone, String password,Entreprise entreprise) {
+        super(firstname,lastname,email,phone,null,password);
+    }
 }

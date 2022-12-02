@@ -7,10 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -18,11 +15,15 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @FieldDefaults(level = AccessLevel.PROTECTED)
-
+@JsonIgnoreProperties(value={"categorie"},allowSetters = true)
 public class Produit extends AbstractEntite{
+    String nomProduit;
+    int quantite;
+    @Column(unique = true)
+    String reference;
     @ManyToOne
     Categorie categorie;
 
-    @ManyToMany
-    List<Commande> commandes;
+    //@ManyToMany
+    //List<Commande> commandes;
 }

@@ -1,11 +1,9 @@
 package PosBackend.Service.Impl;
 
-import PosBackend.Domain.Entrepot;
 import PosBackend.Domain.Manager;
 import PosBackend.Domain.Vendeur;
 import PosBackend.Dto.user.VendeurCreateDto;
 import PosBackend.Mapper.VendeurMapper;
-import PosBackend.Repository.EntrepotRepository;
 import PosBackend.Repository.ManagerRepository;
 import PosBackend.Repository.VendeurRepository;
 import PosBackend.Service.VendeurService;
@@ -33,6 +31,16 @@ public class VendeurServiceImpl implements VendeurService {
 
         vendeur.setManager(manager.get());
         return vendeurRepository.save(vendeur);
+    }
+
+    @Override
+    public Vendeur valideVendeur(String id) {
+      Optional<Vendeur> vendeur=  vendeurRepository.findById(id);
+      if(vendeur.isEmpty()){
+          throw new UserException("sorry vendeur not found");
+      }
+      vendeur.get().setValide(true);
+      return vendeurRepository.save(vendeur.get());
     }
 
 }
