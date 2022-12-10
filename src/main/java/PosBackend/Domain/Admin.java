@@ -21,4 +21,5 @@ public class Admin extends User{
     public Admin(String firstname, String lastname, String  email, String phone, String password,Entreprise entreprise) {
         super(firstname,lastname,email,phone,null,password);
     }
+
 }

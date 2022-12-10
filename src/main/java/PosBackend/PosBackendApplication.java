@@ -7,12 +7,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+
 @SpringBootApplication
 public class PosBackendApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PosBackendApplication.class, args);
 	}
+
 
 	@Bean
 	CommandLineRunner Start(EntrepriseRepository entrepriseRepository,
@@ -25,16 +27,17 @@ public class PosBackendApplication {
 		return args -> {
 			Admin admin=new Admin("mehdi","hajji","dd","dd","dd",null);
 			//adminRepository.save(admin);
-			Entreprise entreprise=new Entreprise("1","2021","missimi","metier",admin,null);
+			Entreprise entreprise=new Entreprise("1","2021","missimi","metier",null,null);
 			entrepriseRepository.save(entreprise);
-			Entrepot entrepot=new Entrepot("1",null,entreprise,null);
-			entrepotRepository.save(entrepot);
-			Manager manager=new Manager("mehdi","hajji","ddee","dd","dd",entrepot,null);
-			managerRepository.save(manager);
-			Vendeur vendeur=new Vendeur("mehdi","hajji","ddee","dd","dd",manager);
-			vendeurRepository.save(vendeur);
+			//Entrepot entrepot=new Entrepot("1","",null,entreprise,null);
+			//entrepotRepository.save(entrepot);
+			//Manager manager=new Manager("mehdi","hajji","ddee","dd","dd",entrepot,null);
+			//managerRepository.save(manager);
+			//Vendeur vendeur=new Vendeur("mehdi","hajji","ddee","dd","dd",manager);
+			//vendeurRepository.save(vendeur);
 
 		};
 	}
+
 
 }

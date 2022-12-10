@@ -10,10 +10,11 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class VendeurCreateDto extends UserCreateDto {
 
-   String idManager;
-    public VendeurCreateDto(String firstName, String lastName, String email, String phone, String password,String idManager){
+
+    String nameEntrepot;
+    public VendeurCreateDto(String firstName, String lastName, String email, String phone, String password,String nameEntrepot){
         super(firstName, lastName, email, phone, password);
-        this.idManager=idManager;
+        this.nameEntrepot=nameEntrepot;
 
     }
 }

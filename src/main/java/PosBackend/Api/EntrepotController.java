@@ -8,10 +8,9 @@ import PosBackend.Dto.user.VendeurCreateDto;
 import PosBackend.Service.EntrepotService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,5 +22,17 @@ public class EntrepotController {
     public ResponseEntity<Entrepot> create(@RequestBody EntrepotDto entrepotDto){
         return ResponseEntity.ok().body(entrepotService.createEntrepot(entrepotDto));
 
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<Entrepot>> getEntrepots(){
+        return ResponseEntity.ok().body(entrepotService.getAllEntrepot());
+    }
+    @GetMapping("/nonAttribue")
+    public ResponseEntity<List<Entrepot>> getEntrepotsNonAtrribué(){
+        return ResponseEntity.ok().body(entrepotService.getAllEntrepotNonAtribué());
+    }
+    @GetMapping("/attribue")
+    public ResponseEntity<List<Entrepot>> getEntrepotsAtrribué(){
+        return ResponseEntity.ok().body(entrepotService.getAllEntrepotAtribué());
     }
 }

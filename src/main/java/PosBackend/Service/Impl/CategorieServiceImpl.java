@@ -1,5 +1,6 @@
 package PosBackend.Service.Impl;
 
+
 import PosBackend.Domain.Categorie;
 import PosBackend.Dto.categorie.CategorieDto;
 import PosBackend.Mapper.CategorieMapper;
@@ -40,6 +41,7 @@ public class CategorieServiceImpl implements CategorieService {
         }
         return categorieRepository.save(categorieMapper.toBo(categorieDto));
     }
+
 
 
 }

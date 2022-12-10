@@ -15,6 +15,10 @@ import java.util.List;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EntrepotDto {
+    String region;
+    String name;
+    String city;
+    String patente;
     String adresse;
     String idEntreprise;
 }

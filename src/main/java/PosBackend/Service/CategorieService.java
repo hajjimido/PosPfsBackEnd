@@ -7,4 +7,5 @@ public interface CategorieService {
     Categorie addCategorie(CategorieDto categorieDto);
     String deleteCategorie(String name);
     Categorie updateCategorie(CategorieDto categorieDto);
+
 }

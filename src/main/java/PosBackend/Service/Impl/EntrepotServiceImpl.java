@@ -11,7 +11,9 @@ import PosBackend.advice.Exception.UserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,16 +25,31 @@ public class EntrepotServiceImpl implements EntrepotService {
 
     @Override
     public Entrepot createEntrepot(EntrepotDto entrepotDto) {
-        Optional<Entreprise> entreprise=entrepriseRepository.findById(entrepotDto.getIdEntreprise());
+      /*  Optional<Entreprise> entreprise=entrepriseRepository.findById(entrepotDto.getIdEntreprise());
         if(!entreprise.isPresent())
         {
             throw new UserException("cant create entrepot");
-        }
+        }*/
             Entrepot entrepot = entrepotMapper.toBo(entrepotDto);
-            entrepot.setEntreprise(entreprise.get());
+           //entrepot.setEntreprise(entreprise.get());
 
             return entrepotRepository.save(entrepot);
 
+    }
+
+    @Override
+    public List<Entrepot> getAllEntrepot() {
+        return entrepotRepository.findAll();
+    }
+
+    @Override
+    public List<Entrepot> getAllEntrepotNonAtribué() {
+        return getAllEntrepot().stream().filter(entrepot -> entrepot.getManager()==null).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Entrepot> getAllEntrepotAtribué() {
+        return getAllEntrepot().stream().filter(entrepot -> entrepot.getManager()!=null).collect(Collectors.toList());
     }
 
 }

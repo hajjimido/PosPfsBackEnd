@@ -3,10 +3,14 @@ package PosBackend.Api;
 import PosBackend.Domain.Produit;
 import PosBackend.Dto.produit.CreateProduitDto;
 import PosBackend.Dto.produit.ProduitDto;
+import PosBackend.Dto.produit.CreateSharedProduitDto;
 import PosBackend.Service.ProduitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLOutput;
+import java.util.List;
 
 @RequestMapping("/produit")
 @RequiredArgsConstructor
@@ -28,6 +32,23 @@ public class ProduitController {
     public ResponseEntity<Produit> updateCategorie(@RequestBody ProduitDto produitDto){
         return ResponseEntity.ok().body(produitService.updateProduit(produitDto));
 
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<ProduitDto>> getAllProduct(){
+        return ResponseEntity.ok().body(produitService.getAllProduct());
+    }
+    @PostMapping("/addProduitToEntrepot")
+    public void addProduitToEntrepot(@RequestBody CreateSharedProduitDto createSharedProduitDto){
+        //System.out.println(createSharedProduitDto.getNameEntrepot()+" hh "+createSharedProduitDto.getReference() );
+        produitService.addProduitToEntrepot(createSharedProduitDto);
+    }
+    @DeleteMapping("/deleteProduitFromEntrepot/{sharedEntrepot}")
+    public void deleteProduitFromEntrepot(@PathVariable(value = "sharedEntrepot" )String sharedEntrepot){
+        produitService.deleteProduitFromEntrepot(sharedEntrepot);
+    }
+    @GetMapping("/{id}")
+    public ProduitDto getProduitById(@PathVariable(value = "id" )String produitId){
+         return  produitService.getProduitById(produitId);
     }
     
 }

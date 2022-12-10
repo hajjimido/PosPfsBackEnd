@@ -22,15 +22,18 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
-        http.authorizeRequests().antMatchers("/admin/**").hasAuthority("ADMIN")
-                .antMatchers("/categorie/**").hasAnyAuthority("ADMIN", "MANAGER")
+        http.authorizeRequests() .antMatchers("/h2/**").permitAll()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                //.antMatchers("/categorie/**").hasAnyAuthority("ADMIN", "MANAGER")
                 .antMatchers("/commande/**").hasAuthority("VENDEUR")
-                .antMatchers("/entrepot/**").hasAuthority("ADMIN")
-                .antMatchers("/entreprise/**").hasAuthority("ADMIN")
-                .antMatchers("/manager/**").hasAuthority("ADMIN")
-                .antMatchers("/produit/**").hasAuthority("MANAGER")
-                .antMatchers("/vendeur/**").hasAnyAuthority("MANAGER", "ADMIN");
+                //.antMatchers("/entrepot/**").hasAuthority("ADMIN")
+                .antMatchers("/entreprise/**").hasAuthority("ADMIN");
+               // .antMatchers("/manager/**").hasAuthority("ADMIN")
+
+                //.antMatchers("/produit/**").hasAuthority("MANAGER");
+                //.antMatchers("/vendeur/**").hasAnyAuthority("MANAGER", "ADMIN");
         http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 }
 

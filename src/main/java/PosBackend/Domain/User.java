@@ -24,9 +24,8 @@ public class User extends AbstractEntite{
     String email;
 
     String phone;
-    @ElementCollection
     @Enumerated(EnumType.STRING)
-    List<Role> roles;
+    Role role;
 
     @Transient
     String password;

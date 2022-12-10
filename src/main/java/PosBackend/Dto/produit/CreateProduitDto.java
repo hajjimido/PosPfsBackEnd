@@ -9,9 +9,11 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateProduitDto {
+    String name;
     String reference;
     String nomProduit;
     int quantite;
-    String nameCatgorie;
+    String nameCategorie;
+    String detail;
 
 }

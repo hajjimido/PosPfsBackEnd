@@ -15,16 +15,21 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @FieldDefaults(level = AccessLevel.PROTECTED)
-@JsonIgnoreProperties(value = {"manager","categories"},allowSetters = true)
+@JsonIgnoreProperties(value = {"manager","sharedProducts"},allowSetters = true)
 
 public class Entrepot extends AbstractEntite{
+    @Column(unique = true)
+    String name;
+    String city;
+    @Column(unique = true)
+    String patente;
     String adresse;
-    @OneToOne
+    String region;
+    @OneToOne(mappedBy = "entrepot")
     Manager manager;
-
     @ManyToOne
     Entreprise entreprise;
-    @ManyToMany(fetch = FetchType.LAZY)
-    List<Categorie> categories;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "entrepot")
+    List<SharedProduct> sharedProducts;
 
 }

@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -16,6 +18,7 @@ import javax.persistence.ManyToOne;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class Vendeur extends User {
+
     @Column(columnDefinition = "boolean default false")
     boolean valide;
     @ManyToOne
@@ -24,6 +27,8 @@ public class Vendeur extends User {
         super(firstname,lastname,email,phone,null,password);
         this.manager=manager;
     }
+
+
 
 
 }

@@ -19,6 +19,7 @@ import java.util.List;
 public class Commande extends AbstractEntite{
     @Embedded
     Client client;
+
     @ManyToMany
     List<Produit> produits;
 }
