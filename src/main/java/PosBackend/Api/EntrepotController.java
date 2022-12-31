@@ -35,4 +35,5 @@ public class EntrepotController {
     public ResponseEntity<List<Entrepot>> getEntrepotsAtrribué(){
         return ResponseEntity.ok().body(entrepotService.getAllEntrepotAtribué());
     }
+
 }

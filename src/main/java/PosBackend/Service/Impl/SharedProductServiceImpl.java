@@ -3,12 +3,16 @@ package PosBackend.Service.Impl;
 import PosBackend.Domain.Entrepot;
 import PosBackend.Domain.Produit;
 import PosBackend.Domain.SharedProduct;
+import PosBackend.Dto.produit.ProduitDto;
+import PosBackend.Mapper.ProduitMapper;
 import PosBackend.Repository.SharedProductRepository;
 import PosBackend.Service.SharedProductService;
 import PosBackend.advice.Exception.UserException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,6 +20,7 @@ import java.util.Optional;
 
 public class SharedProductServiceImpl implements SharedProductService {
     private final SharedProductRepository sharedProductRepository;
+    private final ProduitMapper produitMapper;
 
     @Override
     public void addProductToEnrepot(Entrepot entrepot, Produit produit,int capacite) {
@@ -43,4 +48,18 @@ public class SharedProductServiceImpl implements SharedProductService {
         sharedProductRepository.deleteById(sharedProduct);
 
     }
+
+    @Override
+    public List<ProduitDto> getProduitsByEntrepot(Entrepot entrepot) {
+        Optional<List<SharedProduct>> sharedProducts= sharedProductRepository.findByEntrepot(entrepot);
+        if(sharedProducts.isEmpty()){
+            throw new UserException("sorry c ant find produit in stock");
+        }
+        List<ProduitDto> produitDtoList=new ArrayList<>();
+        for(SharedProduct sharedProduct:sharedProducts.get()){
+            produitDtoList.add(produitMapper.toDto(sharedProduct.getProduit()));
+        }
+        return produitDtoList;
+    }
+
 }

@@ -10,4 +10,5 @@ import java.util.Optional;
 
 public interface SharedProductRepository extends JpaRepository<SharedProduct,String> {
     Optional<SharedProduct> findByProduitAndEntrepot(Produit produit, Entrepot entrepot);
+    Optional<List<SharedProduct>> findByEntrepot( Entrepot entrepot);
 }

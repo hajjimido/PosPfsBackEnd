@@ -10,7 +10,7 @@ import PosBackend.Dto.produit.CreateSharedProduitDto;
 import java.util.List;
 
 public interface ProduitService {
-        Produit addProduit(CreateProduitDto createProduitDto);
+        void addProduit(CreateProduitDto createProduitDto);
         String deleteProduit(String reference);
         Produit updateProduit(ProduitDto createProduitDto);
         void extractFromProduit(ProduitDto produitFromCommande);
@@ -21,4 +21,6 @@ public interface ProduitService {
     void deleteProduitFromEntrepot(String sharedEntrepot );
 
     ProduitDto getProduitById(String produitId);
+
+    ProduitDto getProduitByRef(String produitref);
 }

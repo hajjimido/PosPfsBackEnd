@@ -19,8 +19,8 @@ public class ProduitController {
     private final ProduitService produitService;
 
     @PostMapping("/add")
-    public ResponseEntity<Produit> addCategorie(@RequestBody CreateProduitDto createProduitDto){
-        return ResponseEntity.ok().body(produitService.addProduit(createProduitDto));
+    public void addCategorie(@RequestBody CreateProduitDto createProduitDto){
+         produitService.addProduit(createProduitDto);
 
     }
     @DeleteMapping("/delete/{reference}")
@@ -39,7 +39,6 @@ public class ProduitController {
     }
     @PostMapping("/addProduitToEntrepot")
     public void addProduitToEntrepot(@RequestBody CreateSharedProduitDto createSharedProduitDto){
-        //System.out.println(createSharedProduitDto.getNameEntrepot()+" hh "+createSharedProduitDto.getReference() );
         produitService.addProduitToEntrepot(createSharedProduitDto);
     }
     @DeleteMapping("/deleteProduitFromEntrepot/{sharedEntrepot}")
@@ -49,6 +48,10 @@ public class ProduitController {
     @GetMapping("/{id}")
     public ProduitDto getProduitById(@PathVariable(value = "id" )String produitId){
          return  produitService.getProduitById(produitId);
+    }
+    @GetMapping("ref/{reference}")
+    public ProduitDto getProduitByRef(@PathVariable(value = "reference" )String produitref){
+        return  produitService.getProduitByRef(produitref);
     }
     
 }

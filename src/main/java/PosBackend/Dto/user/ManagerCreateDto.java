@@ -11,8 +11,8 @@ public class ManagerCreateDto extends UserCreateDto {
 
     String nameEntrepot;
 
-    public ManagerCreateDto(String firstName, String lastName, String email, String phone, String password,String nameEntrepot){
-        super(firstName, lastName, email, phone, password);
+    public ManagerCreateDto(String firstName, String lastName, String email, String phone, String password,String nameEntrepot,String username){
+        super(firstName, lastName, email, phone, password,username);
         this.nameEntrepot=nameEntrepot;
 
     }

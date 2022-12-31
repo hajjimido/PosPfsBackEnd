@@ -24,8 +24,8 @@ public class Manager extends User{
     @OneToMany(mappedBy = "manager",fetch = FetchType.LAZY)
     List<Vendeur> vendeurs;
 
-    public Manager(String firstname, String lastname, String  email, String phone, String password,Entrepot entrepot,List<Vendeur>vendeurs) {
-        super(firstname,lastname,email,phone,null,password);
+    public Manager(String firstname, String lastname, String  email, String phone, String password,String username,Entrepot entrepot,List<Vendeur>vendeurs) {
+        super(firstname,lastname,email,username,phone,null,password);
         this.entrepot=entrepot;
         this.vendeurs=vendeurs;
     }

@@ -19,5 +19,6 @@ public class UserCreateDto implements Serializable {
     String email;
     String phone;
     String password;
+    String username;
 
 }

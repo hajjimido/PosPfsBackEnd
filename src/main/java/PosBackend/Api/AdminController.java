@@ -5,10 +5,8 @@ import PosBackend.Dto.user.AdminCreateDto;
 import PosBackend.Service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 @RestController
@@ -16,6 +14,10 @@ public class AdminController {
 
     private final AdminService adminService;
 
+    @GetMapping("/connect")
+    public ResponseEntity<AdminCreateDto> getAdminConnected(){
+        return ResponseEntity.ok().body(adminService.getAdminConnected());
+    }
 
     @PostMapping("/create")
     public ResponseEntity<Admin> createAdmin(@RequestBody AdminCreateDto adminDto){
@@ -25,5 +27,6 @@ public class AdminController {
     public ResponseEntity updateAdmin(@RequestBody AdminCreateDto adminDto){
         return ResponseEntity.ok().body(adminService.createAdmin(adminDto));
     }
+
 
 }

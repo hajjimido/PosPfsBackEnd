@@ -2,6 +2,7 @@ package PosBackend.Service;
 
 
 import PosBackend.Domain.Vendeur;
+import PosBackend.Dto.commande.CommandeDto;
 import PosBackend.Dto.user.VendeurCreateDto;
 import PosBackend.Dto.user.VendeurDto;
 
@@ -19,5 +20,8 @@ public interface VendeurService {
     Vendeur getVendeur(String id);
 
     List<VendeurDto> getAllVendeurs();
+    Vendeur findVendeurByEmail(String email);
 
+
+    List<CommandeDto> getAllCommandes();
 }

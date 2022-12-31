@@ -4,6 +4,7 @@ package PosBackend.Api;
 import PosBackend.Domain.Manager;
 import PosBackend.Domain.Vendeur;
 
+import PosBackend.Dto.commande.CommandeDto;
 import PosBackend.Dto.user.VendeurCreateDto;
 import PosBackend.Dto.user.VendeurDto;
 import PosBackend.Service.VendeurService;
@@ -49,6 +50,11 @@ public class VendeurController {
     @GetMapping("/all")
     public ResponseEntity<List<VendeurDto>> getAllVendeurs(){
         return ResponseEntity.ok().body(vendeurService.getAllVendeurs());
+    }
+
+    @GetMapping("/commandes")
+    public ResponseEntity<List<CommandeDto>> getAllCommandes(){
+        return ResponseEntity.ok().body(vendeurService.getAllCommandes());
     }
 
 

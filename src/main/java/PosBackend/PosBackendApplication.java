@@ -25,9 +25,9 @@ public class PosBackendApplication {
 
 							) {
 		return args -> {
-			Admin admin=new Admin("mehdi","hajji","dd","dd","dd",null);
+			Admin admin=new Admin("mehdi","hajji","mhajji805@gmail.com","hh","dd","dd",null);
 			//adminRepository.save(admin);
-			Entreprise entreprise=new Entreprise("1","2021","missimi","metier",null,null);
+			Entreprise entreprise=new Entreprise("1","2021","missimi","metier",admin,null);
 			entrepriseRepository.save(entreprise);
 			//Entrepot entrepot=new Entrepot("1","",null,entreprise,null);
 			//entrepotRepository.save(entrepot);

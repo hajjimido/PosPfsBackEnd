@@ -11,7 +11,8 @@ import java.util.List;
 @Data @AllArgsConstructor @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CommandeDto {
-
+    String idVendeur;
+    String id;
     ClientDto client;
     List<ProduitDto> produits;
 }

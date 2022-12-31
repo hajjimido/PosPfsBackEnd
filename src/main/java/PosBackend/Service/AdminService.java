@@ -5,6 +5,7 @@ import PosBackend.Dto.user.AdminCreateDto;
 import PosBackend.Dto.user.AdminDto;
 
 public interface AdminService {
+    AdminCreateDto getAdminConnected();
     Admin createAdmin(AdminCreateDto adminDto);
     String updateAdmin(AdminDto adminDto);
 }

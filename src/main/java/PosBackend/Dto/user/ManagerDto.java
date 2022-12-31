@@ -1,5 +1,6 @@
 package PosBackend.Dto.user;
 
+import PosBackend.Dto.entrepot.EntrepotDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,6 @@ import java.util.List;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ManagerDto extends UserDto{
-    String nameEntrepot;
+    EntrepotDto entrepot;
     List<VendeurDto> vendeurs;
 }

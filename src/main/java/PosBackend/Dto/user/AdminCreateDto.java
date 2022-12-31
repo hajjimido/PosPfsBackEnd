@@ -8,8 +8,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PUBLIC)
 public class AdminCreateDto extends UserCreateDto {
 
-    public AdminCreateDto(String firstName, String lastName, String email, String phone, String password){
-        super(firstName, lastName, email, phone, password);
+    public AdminCreateDto(String firstName, String lastName, String email, String phone, String password,String username){
+        super(firstName, lastName, email, phone, password,username);
 
     }
 

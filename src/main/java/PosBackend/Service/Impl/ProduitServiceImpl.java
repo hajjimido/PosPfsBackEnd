@@ -13,6 +13,7 @@ import PosBackend.Repository.ProduitRepository;
 import PosBackend.Service.ProduitService;
 import PosBackend.Service.SharedProductService;
 import PosBackend.advice.Exception.UserException;
+import PosBackend.utils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,18 +26,29 @@ public class ProduitServiceImpl implements ProduitService {
     private final CategorieRepository categorieRepository;
     private final ProduitRepository produitRepository;
     private final ProduitMapper produitMapper;
+
     private final SharedProductService sharedProductService;
     private final EntrepotRepository entrepotRepository;
     @Override
-    public Produit addProduit(CreateProduitDto createProduitDto) {
+    public void addProduit(CreateProduitDto createProduitDto) {
         Optional<Categorie> categorie=categorieRepository.findByNameCategorie(createProduitDto.getNameCategorie());
         if(categorie.isEmpty()){
             throw new UserException("sorry cant create produit");
         }
         Produit produit=produitMapper.toBo(createProduitDto);
-       produit.setCategorie(categorie.get());
+        produit.setCategorie(categorie.get());
+        produitRepository.save(produit);
+        if(createProduitDto.getEntrepotDto()!=null) {
 
-        return produitRepository.save(produit);
+            Optional<Entrepot>  entrepot=entrepotRepository.findByName(createProduitDto.getEntrepotDto());
+            if (entrepot.isEmpty()) {
+                throw new UserException("sorry cant create produit");
+            }
+            CreateSharedProduitDto createSharedProduitDto=new CreateSharedProduitDto(createProduitDto.getReference(),createProduitDto.getEntrepotDto(),createProduitDto.getQuantite());
+            addProduitToEntrepot(createSharedProduitDto);
+
+        }
+
     }
 
     @Override
@@ -102,6 +114,12 @@ public class ProduitServiceImpl implements ProduitService {
         Optional<Produit> produit=produitRepository.findById(produitId);
         return  produitMapper.toDto(produit.get());
 
+    }
+
+    @Override
+    public ProduitDto getProduitByRef(String produitref) {
+        Optional<Produit> produit=produitRepository.findByreference(produitref);
+        return  produitMapper.toDto(produit.get());
     }
 
     private Produit updateProduitQuantite(Produit produit,int quantiteToSoustract) {

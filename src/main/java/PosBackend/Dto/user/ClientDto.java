@@ -14,5 +14,5 @@ public class ClientDto {
     String firstName;
     String lastName;
     String phone;
-    String Adresse;
+    String adresse;
 }
